@@ -1,6 +1,12 @@
 beego-admin-demo
 ================
 
+[![Requirement >= Go 1.2rc1](http://b.repl.ca/v1/Requirement-%3E%3D_Go%201.2rc1-blue.png)]() [![Requirement >= beego 0.9.9](http://b.repl.ca/v1/Requirement-%3E%3D_beego%200.9.9-blue.png)]()
+
+
+在 `go version go1.8.3 darwin/amd64` 调试通过。
+
+
 根据 `Gopher` 的邀请，编写演示如何在项目中集成 `Beego-Admin` 。
 
 我没有前端工作的经验，为了演示需要把 `beego` 官网源代码和 `Beego-Admin` 集成。
@@ -38,6 +44,9 @@ bee run github.com/devuser/beego-admin-demo
 1. 访问 `http://127.0.0.1:8080/public/login`
 2. 输入用户名密码 `admin/admin`
 
+
+
+如下是 Beego官网的说明文件
 
 Beego Web
 =========
