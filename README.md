@@ -7,6 +7,7 @@ beego-admin-demo
 在 `go version go1.8.3 darwin/amd64` 调试通过。
 
 
+
 根据 `Gopher` 的邀请，编写演示如何在项目中集成 `Beego-Admin` 。
 
 我没有前端工作的经验，为了演示需要把 `beego` 官网源代码和 `Beego-Admin` 集成。
@@ -19,6 +20,10 @@ beego-admin-demo
 -	Beego-Admin [https://github.com/beego/admin](https://github.com/beego/admin)
 
 
+作用
+-----
+
+去年使用 beego+beegoAdmin 完成数据库的快速构建，初始化数据的构建，梳理不太稳定的需求，还是很方便的。
 
 环境要求
 ---------
