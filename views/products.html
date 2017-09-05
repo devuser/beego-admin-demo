@@ -1,0 +1,50 @@
+{{template "base/base.html" .}}
+{{define "head"}}{{end}}
+{{define "meta"}}
+<title>{{i18n .Lang "products_use_beego"}} - beego: {{i18n .Lang "app_intro"}}</title>
+{{end}}
+{{define "body"}}
+<div id="products" class="container main-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="product-head">
+				<h2>{{i18n .Lang "products_use_beego"}}</h2>
+				<div>
+					<a target="_blank" href="https://github.com/beego/products">{{i18n .Lang "submit_your_product"}}</a>
+					{{if eq .Lang "zh-CN"}}
+						，如果使用GitHub有任何问题，你可以直接发送产品信息到邮箱 <a href="mailto:xiemengjun@gmail.com">xiemengjun@gmail.com</a>
+					{{else}}
+						. If you have any problem when use GitHub. You can direct send product info to mailbox: <a href="mailto:xiemengjun@gmail.com">xiemengjun@gmail.com</a>
+					{{end}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="products-showcase" class="row">
+		{{range .Products.Projects}}
+			<div class="col-md-4 col-xs-6 product">
+				<div class="box">
+					<h3><a target="_blank" href="{{.Url}}">{{.Name}}</a></h3>
+					{{if .Desc}}
+						<div class="desc">
+							{{.Desc}}
+						</div>
+					{{end}}
+					{{if .Thumb}}
+						<div class="img">
+							<a target="_blank" href="/products/images/{{.Thumb}}">
+								<img class="img-responsive" src="/products/images/{{.Thumb}}">
+							</a>
+						</div>
+					{{end}}
+					<div class="meta">
+						<span class="pull-right">{{if .Src}}<a target="_blank" href="{{.Src}}">Open Source</a> - {{end}}<a target="_blank" href="{{.Url}}">Web</a> - {{.Date}}</span>
+						<span>{{.Submitter}}</span>
+					</div>
+					<span class="clearfix"></span>
+				</div>
+			</div>
+		{{end}}
+	</div>
+</div>
+{{end}}

@@ -1,0 +1,217 @@
+{{template "base/base.html" .}}
+{{define "meta"}}
+    <meta name="description" content="CPFC DP is an official report server and documentation website" />
+    <meta name="keywords" content="CPFC, DP, report, documentation">
+    <title>{{i18n .Lang "homepage"}} - CPFC DP: {{i18n .Lang "app_intro"}}</title>
+{{end}}
+{{define "head"}}{{end}}
+{{define "body"}}
+<div class="main-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    CPFC DP
+                </div>
+                <div class="desc">
+                    {{i18n .Lang "home.beego_desc"}}
+                </div>
+                <div class="actions">
+                    <a href="/docs/intro/" class="btn btn-lg btn-info">{{i18n .Lang "learn more"}}</a>
+                    <a href="/quickstart" class="btn btn-lg btn-success">{{i18n .Lang "get started"}}</a>
+                    <span style="position:absolute;margin:10px 0 0 40px;">{{i18n .Lang "version"}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row home-box">
+        <div class="col-md-8">
+            <h2>{{i18n .Lang "home.quick_start"}}</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="markdown">
+                        {{if eq .Lang "zh-CN"}}
+                            <p>下载安装<code>Acrobat Reader</code></p>
+                            <pre lang="bash">
+                                <code>http://wwww.adobe.com/downloads/acrobatreader....</code>
+                            </pre>
+                            <p>下载安装<code>Flash Plugin</code></p>
+                            <pre lang="bash">
+                                <code>http://wwww.adobe.com/downloads/flashplugins....</code>
+                            </pre>
+                            <p>浏览演示报表 <code>sample reports</code></p>
+                            <pre lang="go">
+                                <code>http://wwww.adobe.com/downloads/flashplugins....</code>
+                                <code>http://wwww.adobe.com/downloads/flashplugins....</code>
+                            </pre>
+                        {{else}}
+                            <p>Download and install</p>
+                            <pre lang="bash"><code>go get github.com/astaxie/beego</code></pre>
+                            <p>Create file <code>hello.go</code></p>
+                            <pre lang="go"><code>package main<br><br>import "github.com/astaxie/beego"<br><br>func main() {<br>    beego.Run()<br>}</code></pre>
+                        {{end}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="markdown">
+                        {{if eq .Lang "zh-CN"}}
+                            <p>运行环境要求</p>
+                            <pre lang="bash">
+                                <code>支持IE 8.X 浏览器<br>./hello</code></pre>
+                            <p>使用方法</p>
+                            <pre lang="bash">
+                            <p>打开浏览器并访问 <code>http://localhost:8000</code></p>
+                            </pre>
+                            <p>调试专区</p>
+                            <pre lang="bash">
+                            <p>打开浏览器并访问 <code>http://localhost:8000/api/v1/docnames</code></p>
+                            </pre>
+
+                        {{else}}
+                            <p>Build and run</p>
+                            <pre lang="bash"><code>go build hello.go<br>./hello</code></pre>
+                            <p>View effects</p>
+                            <p>Open your browser and visit <code>http://localhost:8000</code></p>
+                            <p>Congratulations! You just built your first beego app.</p>
+                            <p>Please see <a href="/docs">Documentation</a> for going further.</p>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="home-box">
+                <h2>{{i18n .Lang "home.further_reading"}}</h2>
+                <div class="well markdown">
+                    <ul class="list-unstyled">
+                        {{if eq .Lang "zh-CN"}}
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/controller/router.md">Gopher报表平台用户手册</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/model/overview.md">报表清单</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/view/view.md">部门权限设置</a></li>
+                        {{else}}
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/controller/router.md">Router and Controller</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/model/overview.md">ORM Usage</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/mvc/view/view.md">Template Usage</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/examples/">Beego Samples</a></li>
+                            <li><i class="icon-angle-right"></i> <a href="/docs/module/">Optional Advanced Modules</a></li>
+                        {{end}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row home-box">
+        <div class="col-md-12">
+            <h2>{{i18n .Lang "home.features"}}</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="feature">
+                        <h3 class="title">
+                            {{if eq .Lang "zh-CN"}}
+                                简单化
+                            {{else}}
+                                EASY TO USE
+                            {{end}}
+                        </h3>
+                        <p class="content">
+                            {{if eq .Lang "zh-CN"}}
+                                ......
+                            {{else}}
+                                With RESTful support, MVC model, and use bee tool to build your apps quickly with features including code hot compile, automated testing, and automated packing and deploying.
+                            {{end}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature">
+                        <h3 class="title">
+                            {{if eq .Lang "zh-CN"}}
+                                智能化
+                            {{else}}
+                                INTELLIGENT
+                            {{end}}
+                        </h3>
+                        <p class="content">
+                            {{if eq .Lang "zh-CN"}}
+                                ......
+                            {{else}}
+                                With intelligent routing and monitoring, it's able to monitor your QPS, memory and CPU usages, and goroutine status. It provides you full control of your online apps.
+                            {{end}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature">
+                        <h3 class="title">
+                            {{if eq .Lang "zh-CN"}}
+                                模块化
+                            {{else}}
+                                MODULAR
+                            {{end}}
+                        </h3>
+                        <p class="content">
+                            {{if eq .Lang "zh-CN"}}
+                                ......
+                            {{else}}
+                                With powerful built-in modules including session control, caching, logging, configuration parsing, performance supervising, context handling, ORM supporting, and requests simulating. You get the powerful foundation for any type of applications.
+                            {{end}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature">
+                        <h3 class="title">
+                            {{if eq .Lang "zh-CN"}}
+                                高性能
+                            {{else}}
+                                HIGH PERFORMANCE
+                            {{end}}
+                        </h3>
+                        <p class="content">
+                            {{if eq .Lang "zh-CN"}}
+                                ......
+                            {{else}}
+                                With native Go http package to handle the requests and the efficient concurrence of goroutine. Your beego applications can handle massive trafic as beego are doing in many productions.
+                            {{end}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row home-box">
+        <div class="col-md-12">
+            <h2>{{i18n .Lang "home.who_are_use"}}</h2>
+            <div class="whouse">
+                <img class="img-thumbnail" src="/static/img/brands/360.png">
+                <img class="img-thumbnail" src="/static/img/brands/youdao.png">
+                <img class="img-thumbnail" src="/static/img/brands/weico.png">
+                <img class="img-thumbnail" src="/static/img/brands/weibo.png">
+                <img class="img-thumbnail" src="/static/img/brands/jd.png">
+                <img class="img-thumbnail" src="/static/img/brands/bmob.png">
+                <a target="_blank" href="http://www.ardanstudios.com/"><img class="img-thumbnail" src="/static/img/brands/ardanstudios.png"></a>
+                <img class="img-thumbnail" src="/static/img/brands/oupeng.png">
+                <img class="img-thumbnail" src="/static/img/brands/meituan.png">
+                <img class="img-thumbnail" src="/static/img/brands/tudou.png">
+                <img class="img-thumbnail" src="/static/img/brands/lianzong.png">
+                <img class="img-thumbnail" src="/static/img/brands/17173.png">
+                <img class="img-thumbnail" src="/static/img/brands/taobao.png">
+                <img class="img-thumbnail" src="/static/img/brands/snda.png">
+                <img class="img-thumbnail" src="/static/img/brands/tencent.png">
+                <img class="img-thumbnail" src="/static/img/brands/zalora.png">
+                <img class="img-thumbnail" src="/static/img/brands/wepiao.png">
+                <img class="img-thumbnail" src="/static/img/brands/lianjia.png">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+<!-- {{template "tweets.html" .}} -->
+</div>
+{{end}}

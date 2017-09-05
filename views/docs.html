@@ -1,0 +1,77 @@
+{{template "base/base.html" .}}
+{{define "head"}}{{end}}
+{{define "meta"}}
+<title>{{i18n .Lang .Title}} - beego: {{i18n .Lang "app_intro"}}</title>
+{{end}}
+{{define "docs"}}
+    {{with .Doc}}
+        {{range .Docs}}
+            <ul class="list-unstyled">
+                {{if .Name}}
+                    {{ if .IsDir}}
+                        <li class="group">
+                            <div class="section">
+                            {{if .HasContent}}
+                                <a class="{{if eq $.root.Doc.Link .Link}}active{{end}} item" href="/docs/{{.Link}}">{{.Name}}</a>
+                            {{else}}
+                                {{.Name}}
+                            {{end}}
+                            </div>
+                            {{template "docs" dict "root" $.root "Doc" .}}
+                        </li>
+                    {{else}}
+                        <li><a class="{{if eq $.root.Doc.Link .Link}}active{{end}} item" href="/docs/{{.Link}}">{{.Name}}</a></li>
+                    {{end}}
+                {{end}}
+            </ul>
+        {{end}}
+    {{end}}
+{{end}}
+{{define "body"}}
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3">
+            <div id="docs-collapse" class="collapse navbar-collapse docs-sidenav">
+                {{with .DocRoot.Doc}}
+                    {{if .HasContent}}
+                        <div class="section"><a class="{{if eq $.Doc.Link .Link}}active{{end}} item" href="/docs">{{.Name}}</a></div>
+                    {{end}}
+                    {{template "docs" dict "root" $ "Doc" .}}
+                {{end}}
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <div class="box">
+				<div>
+					<script>
+					  (function() {
+					    var cx = '{{i18n .Lang  "googlesearch"}}';
+					    var gcse = document.createElement('script');
+					    gcse.type = 'text/javascript';
+					    gcse.async = true;
+					    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					        '//www.google.com/cse/cse.js?cx=' + cx;
+					    var s = document.getElementsByTagName('script')[0];
+					    s.parentNode.insertBefore(gcse, s);
+					  })();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+                <div class="cell slim page-box">
+                    <p>
+                        <a href="https://github.com/beego/beedoc/blob/master/{{.Lang}}/{{if .Doc.IsDir}}{{.Doc.FileRelPath}}{{else}}{{.Doc.RelPath}}{{end}}" class="pull-right btn btn-info" target="_blank">{{i18n .Lang "improve doc on github"}}</a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="markdown docs-markdown">
+                        {{.Data|str2html}}
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var disqus_url = 'http://beego.me/docs/' + '{{.Doc.Link}}?lang={{.Lang}}';
+            </script>
+            {{template "base/disqus.html" .}}
+        </div>
+    </div>
+</div>
+{{end}}
