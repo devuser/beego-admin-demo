@@ -12,6 +12,25 @@ beego-admin-demo
 -	Beego [https://github.com/astaxie/beego](https://github.com/astaxie/beego)
 -	Beego-Admin [https://github.com/beego/admin](https://github.com/beego/admin)
 
+
+
+环境要求
+---------
+
+1. 安装 `MySQL` 数据库
+2. 创建数据库 `dp`
+3. 使用 `sql/beego-admin-demo.sql` 初始化数据库
+
+配置文件conf/app.conf
+---------------------
+
+运行
+----------------
+
+```
+cd $GOPATH/src
+bee run github.com/devuser/beego-admin-demo
+```
 Beego Web
 =========
 
