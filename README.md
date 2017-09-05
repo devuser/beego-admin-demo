@@ -1,3 +1,17 @@
+beego-admin-demo
+================
+
+根据 `Gopher` 的邀请，编写演示如何在项目中集成 `Beego-Admin` 。
+
+我没有前端工作的经验，为了演示需要把 `beego` 官网源代码和 `Beego-Admin` 集成。
+
+仅供 `Gopher` 参考。
+
+如下版权属于 `Astaxie` 。
+
+-	Beego [https://github.com/astaxie/beego](https://github.com/astaxie/beego)
+-	Beego-Admin [https://github.com/beego/admin](https://github.com/beego/admin)
+
 Beego Web
 =========
 
