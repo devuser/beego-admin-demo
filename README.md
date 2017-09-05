@@ -31,6 +31,14 @@ beego-admin-demo
 cd $GOPATH/src
 bee run github.com/devuser/beego-admin-demo
 ```
+
+访问
+------------------
+
+1. 访问 `http://127.0.0.1:8080/public/login`
+2. 输入用户名密码 `admin/admin`
+
+
 Beego Web
 =========
 
