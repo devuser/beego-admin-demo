@@ -16,10 +16,10 @@
 package main
 
 import (
-	"os"
-
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 	"github.com/beego/i18n"
+	"os"
 
 	"github.com/devuser/beego-admin-demo/models"
 
@@ -39,7 +39,7 @@ const (
 )
 
 func init() {
-	// orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/dp")
+	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/dp")
 }
 
 // We have to call a initialize function manully
