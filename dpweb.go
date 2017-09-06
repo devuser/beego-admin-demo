@@ -17,7 +17,7 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
+	//"github.com/astaxie/beego/orm"
 	"github.com/beego/i18n"
 	"os"
 
@@ -34,12 +34,14 @@ import (
 )
 
 const (
+	// VERSION 版本号
 	VERSION = "0.1.1"
-	APP_VER = "1.0.0"
+	// AppVer 程序内部管控版本号
+	AppVer = "1.0.0"
 )
 
 func init() {
-	orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/dp")
+	//orm.RegisterDataBase("default", "mysql", "root:root@tcp(127.0.0.1:3306)/dp")
 }
 
 // We have to call a initialize function manully
@@ -66,12 +68,12 @@ func initialize() {
 
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = func() string {
 		// db_type := beego.AppConfig.String("db_default_type")
-		db_host := beego.AppConfig.String("db_default_host")
-		db_port := beego.AppConfig.String("db_default_port")
-		db_user := beego.AppConfig.String("db_default_user")
-		db_pass := beego.AppConfig.String("db_default_pass")
-		db_name := beego.AppConfig.String("db_default_name")
-		dns := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", db_user, db_pass, db_host, db_port, db_name)
+		dbHost := beego.AppConfig.String("db_default_host")
+		dbPort := beego.AppConfig.String("db_default_port")
+		dbUser := beego.AppConfig.String("db_default_user")
+		dbPass := beego.AppConfig.String("db_default_pass")
+		dbName := beego.AppConfig.String("db_default_name")
+		dns := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", dbUser, dbPass, dbHost, dbPort, dbName)
 		return dns
 	}()
 
@@ -119,7 +121,7 @@ func main() {
 
 	initialize()
 
-	beego.Info(beego.BConfig.AppName, APP_VER)
+	beego.Info(beego.BConfig.AppName, AppVer)
 
 	beego.InsertFilter("/docs/images/:all", beego.BeforeRouter, routers.DocsStatic)
 

@@ -70,10 +70,12 @@ func setGithubCredentials(id, secret string) {
 	githubCred = "client_id=" + id + "&client_secret=" + secret
 }
 
+// GetDocByLocale 返回文档清单
 func GetDocByLocale(lang string) *DocRoot {
 	return docs[lang]
 }
 
+// InitModels 初始化模型，使用互斥变量
 func InitModels() {
 
 	setGithubCredentials(beego.AppConfig.String("github::client_id"),
@@ -321,8 +323,11 @@ func GetDoc(fullName, lang string) *docFile {
 	return docMap[lang+"/"+fullName]
 }
 
+// TDocFile 文档文件指针
+type TDocFile *docFile
+
 // GetBlog returns 'docFile' by given name and language version.
-func GetBlog(fullName, lang string) *docFile {
+func GetBlog(fullName, lang string) TDocFile {
 	filePath := "blog/" + lang + "/" + fullName
 
 	if beego.BConfig.RunMode == "dev" {
@@ -353,7 +358,7 @@ func (rf *rawFile) Name() string {
 	return rf.name
 }
 
-func (rf *rawFile) RawUrl() string {
+func (rf *rawFile) RawURL() string {
 	return rf.rawURL
 }
 
@@ -369,25 +374,28 @@ func checkFileUpdates() error {
 	beego.Trace("Checking file updates")
 
 	type tree struct {
-		ApiUrl, RawUrl, TreeName, Prefix string
+		ApiUrl   string
+		RawURL   string
+		TreeName string
+		Prefix   string
 	}
 
 	var trees = []*tree{
 	// {
 	// 	ApiUrl:   "https://api.github.com/repos/beego/beedoc/git/trees/master?recursive=1&" + githubCred,
-	// 	RawUrl:   "https://raw.github.com/beego/beedoc/master/",
+	// 	RawURL:   "https://raw.github.com/beego/beedoc/master/",
 	// 	TreeName: "conf/docTree.json",
 	// 	Prefix:   "docs/",
 	// },
 	// {
 	// 	ApiUrl:   "https://api.github.com/repos/beego/beeblog/git/trees/master?recursive=1&" + githubCred,
-	// 	RawUrl:   "https://raw.github.com/beego/beeblog/master/",
+	// 	RawURL:   "https://raw.github.com/beego/beeblog/master/",
 	// 	TreeName: "conf/blogTree.json",
 	// 	Prefix:   "blog/",
 	// },
 	// {
 	// 	ApiUrl:   "https://api.github.com/repos/beego/products/git/trees/master?recursive=1&" + githubCred,
-	// 	RawUrl:   "https://raw.github.com/beego/products/master/",
+	// 	RawURL:   "https://raw.github.com/beego/products/master/",
 	// 	TreeName: "conf/productTree.json",
 	// 	Prefix:   "products/",
 	// },
@@ -425,7 +433,7 @@ func checkFileUpdates() error {
 				beego.Info("Need to update:", name)
 				files = append(files, &rawFile{
 					name:   name,
-					rawURL: tree.RawUrl + node.Path,
+					rawURL: tree.RawURL + node.Path,
 				})
 			}
 
@@ -438,8 +446,8 @@ func checkFileUpdates() error {
 		}
 
 		// Fetch files.
-		if err := getFiles(files); err != nil {
-			return errors.New("models.checkFileUpdates -> fetch files: " + err.Error())
+		if errGetFiles := getFiles(files); errGetFiles != nil {
+			return errors.New("models.checkFileUpdates -> fetch files: " + errGetFiles.Error())
 		}
 
 		// Update data.
@@ -450,9 +458,9 @@ func checkFileUpdates() error {
 				strings.HasSuffix(f.name, ".json") {
 				suf = ""
 			}
-			fw, err := os.Create(tree.Prefix + f.name + suf)
-			if err != nil {
-				beego.Error("models.checkFileUpdates -> open file:", err.Error())
+			fw, errCreate := os.Create(tree.Prefix + f.name + suf)
+			if errCreate != nil {
+				beego.Error("models.checkFileUpdates -> open file:", errCreate.Error())
 				continue
 			}
 

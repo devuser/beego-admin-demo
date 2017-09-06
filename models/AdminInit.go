@@ -68,18 +68,20 @@ func Syncdb() {
 	insertDPSCklx()
 	insertZhengZhaoZhongLei()
 
-	//////////////////////////////////
+	////////////////////////////////////////////////////////////////////
 	insertDianPiaoProductType()
 	insertDianPiaoDetails()
+	//如下为真实项目的构建数据，对于本Case来说没有意义，备注掉
 	///////////////// SAP /////////////////
-	insertSAPOrgmap()
-	insertSAPAccountTitleCode()
-	insertSAPDayBalFlag()
-	insertSAPDayBal()
+	//insertSAPOrgmap()
+	//insertSAPAccountTitleCode()
+	//insertSAPDayBalFlag()
+	//insertSAPDayBal()
 
-	insertExportFileTracs()
+	//insertExportFileTracs()
 	//
 	///
+	////////////////////////////////////////////////////////////////////
 	insertDocSysvalue()
 	insertDocPasswdRuleSuite()
 	insertDocPasswdRule()
@@ -100,11 +102,11 @@ func Syncdb() {
 func Connect() {
 	var dns string
 	db_type := beego.AppConfig.String("db_default_type")
-	db_host := beego.AppConfig.String("db_default_host")
-	db_port := beego.AppConfig.String("db_default_port")
-	db_user := beego.AppConfig.String("db_default_user")
-	db_pass := beego.AppConfig.String("db_default_pass")
-	db_name := beego.AppConfig.String("db_default_name")
+	dbHost := beego.AppConfig.String("db_default_host")
+	dbPort := beego.AppConfig.String("db_default_port")
+	dbUser := beego.AppConfig.String("db_default_user")
+	dbPass := beego.AppConfig.String("db_default_pass")
+	dbName := beego.AppConfig.String("db_default_name")
 	// db_path := beego.AppConfig.String("db_path")
 	// db_sslmode := beego.AppConfig.String("db_sslmode")
 
@@ -113,17 +115,17 @@ func Connect() {
 	switch db_type {
 	case "mysql":
 		orm.RegisterDriver("mysql", orm.DRMySQL)
-		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", db_user, db_pass, db_host, db_port, db_name)
+		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", dbUser, dbPass, dbHost, dbPort, dbName)
 		break
 	// case "postgres":
 	// 	orm.RegisterDriver("postgres", orm.DRPostgres)
-	// 	dns = fmt.Sprintf("dbname=%s host=%s  user=%s  password=%s  port=%s  sslmode=%s", db_name, db_host, db_user, db_pass, db_port, db_sslmode)
+	// 	dns = fmt.Sprintf("dbname=%s host=%s  user=%s  password=%s  port=%s  sslmode=%s", dbName, dbHost, dbUser, dbPass, dbPort, db_sslmode)
 	// case "sqlite3":
 	// 	orm.RegisterDriver("sqlite3", orm.DRSqlite)
 	// 	if db_path == "" {
 	// 		db_path = "./"
 	// 	}
-	// 	dns = fmt.Sprintf("%s%s.db", db_path, db_name)
+	// 	dns = fmt.Sprintf("%s%s.db", db_path, dbName)
 	// 	break
 	default:
 		beego.Critical("Database driver is not allowed:", db_type)
@@ -135,11 +137,11 @@ func Connect() {
 func createdb() {
 
 	db_type := beego.AppConfig.String("db_default_type")
-	db_host := beego.AppConfig.String("db_default_host")
-	db_port := beego.AppConfig.String("db_default_port")
-	db_user := beego.AppConfig.String("db_default_user")
-	db_pass := beego.AppConfig.String("db_default_pass")
-	db_name := beego.AppConfig.String("db_default_name")
+	dbHost := beego.AppConfig.String("db_default_host")
+	dbPort := beego.AppConfig.String("db_default_port")
+	dbUser := beego.AppConfig.String("db_default_user")
+	dbPass := beego.AppConfig.String("db_default_pass")
+	dbName := beego.AppConfig.String("db_default_name")
 	// db_path := beego.AppConfig.String("db_path")
 	// db_sslmode := beego.AppConfig.String("db_sslmode")
 
@@ -148,18 +150,18 @@ func createdb() {
 	beego.Critical("Checking :", db_type)
 	switch db_type {
 	case "mysql":
-		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/?charset=utf8", db_user, db_pass, db_host, db_port)
-		sqlstring = fmt.Sprintf("CREATE DATABASE  if not exists `%s` CHARSET utf8 COLLATE utf8_general_ci", db_name)
+		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/?charset=utf8", dbUser, dbPass, dbHost, dbPort)
+		sqlstring = fmt.Sprintf("CREATE DATABASE  if not exists `%s` CHARSET utf8 COLLATE utf8_general_ci", dbName)
 		break
 	// case "postgres":
-	// 	dns = fmt.Sprintf("host=%s  user=%s  password=%s  port=%s  sslmode=%s", db_host, db_user, db_pass, db_port, db_sslmode)
-	// 	sqlstring = fmt.Sprintf("CREATE DATABASE %s", db_name)
+	// 	dns = fmt.Sprintf("host=%s  user=%s  password=%s  port=%s  sslmode=%s", dbHost, dbUser, dbPass, dbPort, db_sslmode)
+	// 	sqlstring = fmt.Sprintf("CREATE DATABASE %s", dbName)
 	// 	break
 	// case "sqlite3":
 	// 	if db_path == "" {
 	// 		db_path = "./"
 	// 	}
-	// 	dns = fmt.Sprintf("%s%s.db", db_path, db_name)
+	// 	dns = fmt.Sprintf("%s%s.db", db_path, dbName)
 	// 	os.Remove(dns)
 	// 	sqlstring = "create table init (n varchar(32));drop table init;"
 	// 	break
@@ -178,7 +180,7 @@ func createdb() {
 		log.Println(err)
 		log.Println(r)
 	} else {
-		log.Println("Database ", db_name, " created")
+		log.Println("Database ", dbName, " created")
 	}
 	defer db.Close()
 
