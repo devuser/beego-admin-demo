@@ -63,6 +63,7 @@ type User struct {
 	DocOrg        *DocOrg      `orm:"rel(fk)"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (u *User) TableName() string {
 	return beego.AppConfig.String("rbac_user_table")
 }
