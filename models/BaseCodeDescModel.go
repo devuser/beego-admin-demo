@@ -40,6 +40,7 @@ type BaseCodeDesc struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *BaseCodeDesc) TableName() string {
 	return beego.AppConfig.String("base_common_codedesc_table")
 }

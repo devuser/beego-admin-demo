@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-//DocSysvalue 系统变量表
+// DocSysvalue 系统变量表
 // Label 在页面显示中的标签，或中文描述
 // Creator 创建者
 type DocSysvalue struct {
@@ -33,6 +33,7 @@ type DocSysvalue struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (t *DocSysvalue) TableName() string {
 	return beego.AppConfig.String("doc_sysvalue_table")
 }

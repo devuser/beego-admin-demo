@@ -58,6 +58,7 @@ type CRDJieJu struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (t *CRDJieJu) TableName() string {
 	return beego.AppConfig.String("base_crd_jieju_table")
 }

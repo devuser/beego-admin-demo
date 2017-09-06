@@ -116,6 +116,7 @@ type DPSzhminx struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (t *DPSzhminx) TableName() string {
 	return beego.AppConfig.String("base_dps_zhminx_table")
 }

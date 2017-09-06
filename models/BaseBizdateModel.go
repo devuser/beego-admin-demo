@@ -37,6 +37,7 @@ type BaseBizdate struct {
 // 	State string `orm:"unique;column(bizdate);type(datetime);null"	form:"State"  valid:"Required"`
 // }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *BaseBizdate) TableName() string {
 	return beego.AppConfig.String("base_bizdate_table")
 }

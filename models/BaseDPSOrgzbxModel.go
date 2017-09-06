@@ -56,6 +56,7 @@ type DPSOrgzbx struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (t *DPSOrgzbx) TableName() string {
 	return beego.AppConfig.String("base_dps_orgckzhzbx_table")
 }

@@ -43,11 +43,12 @@ type BaseETLTaskCmd struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *BaseETLTaskCmd) TableName() string {
 	return beego.AppConfig.String("base_etl_taskcmd_table")
 }
 
-//验证用户信息
+// checkBaseETLTaskCmd 验证用户信息
 func checkBaseETLTaskCmd(u *BaseETLTaskCmd) (err error) {
 	valid := validation.Validation{}
 	b, _ := valid.Valid(&u)
@@ -64,7 +65,7 @@ func init() {
 	orm.RegisterModel(new(BaseETLTaskCmd))
 }
 
-//get node list
+// GetBaseETLTaskCmdlist get node list
 func GetBaseETLTaskCmdlist(page int64, page_size int64, sort string) (nodes []orm.Params, count int64) {
 	o := orm.NewOrm()
 	node := new(BaseETLTaskCmd)
@@ -80,6 +81,7 @@ func GetBaseETLTaskCmdlist(page int64, page_size int64, sort string) (nodes []or
 	return nodes, count
 }
 
+// GetBaseETLTaskCmdById
 func GetBaseETLTaskCmdById(nid int64) (BaseETLTaskCmd, error) {
 	o := orm.NewOrm()
 	node := BaseETLTaskCmd{Id: nid}
@@ -90,7 +92,7 @@ func GetBaseETLTaskCmdById(nid int64) (BaseETLTaskCmd, error) {
 	return node, nil
 }
 
-//添加用户
+// AddBaseETLTaskCmd 添加用户
 func AddBaseETLTaskCmd(n *BaseETLTaskCmd) (int64, error) {
 	if err := checkBaseETLTaskCmd(n); err != nil {
 		return 0, err

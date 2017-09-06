@@ -28,6 +28,7 @@ type BaseDateUnit struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *BaseDateUnit) TableName() string {
 	return beego.AppConfig.String("base_common_dateunit_table")
 }

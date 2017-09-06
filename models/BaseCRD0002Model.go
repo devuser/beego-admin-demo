@@ -107,6 +107,7 @@ type CRD0002Model struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *CRD0002Model) TableName() string {
 	return beego.AppConfig.String("base_crd_0002_table")
 }

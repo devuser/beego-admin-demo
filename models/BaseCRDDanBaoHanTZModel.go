@@ -51,6 +51,7 @@ type CRDDanBaoHanTZ struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *CRDDanBaoHanTZ) TableName() string {
 	return beego.AppConfig.String("base_crd_danbaohantz_table")
 }

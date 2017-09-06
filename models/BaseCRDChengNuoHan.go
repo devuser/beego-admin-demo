@@ -40,6 +40,7 @@ type CRDChengNuoHan struct {
 	Message  string    `orm:"column(message);size(255);null"`
 }
 
+// TableName 缺省方法，返回对应的数据库表名
 func (n *CRDChengNuoHan) TableName() string {
 	return beego.AppConfig.String("base_crd_chengnuohan_table")
 }
